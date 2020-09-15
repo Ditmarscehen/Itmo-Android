@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val numbers: Set<Button> = setOf(
+        val numbers: List<Button> = listOf(
             button0,
             button1,
             button2,
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             button8,
             button9
         )
-        val operators: Set<Button> = setOf(
+        val operators: List<Button> = listOf(
             buttonAdd,
             buttonSubtract,
             buttonMultiply,
@@ -39,31 +39,16 @@ class MainActivity : AppCompatActivity() {
         for (i in numbers) {
             clickNumber(i)
         }
+
         for (i in operators) {
             clickOperator(i)
         }
+
         clickDot(buttonDot)
-        buttonDelete.setOnClickListener {
-            if (input.text.isNotEmpty()) {
-                if (operatorsChar.contains(input.text.last()))
-                    operatorsCount--
-                input.text = input.text.substring(0, input.text.length - 1)
-                if (operatorsCount > 0 && !operatorsChar.contains(input.text.last())) {
-                    evaluate()
-                } else {
-                    output.text = ""
-                }
-            }
-            ensureLength()
-        }
-        buttonEvaluate.setOnClickListener {
-            evaluate()
-            if (correct) {
-                input.text = output.text
-                output.text = ""
-            }
-            ensureLength()
-        }
+
+        clickDelete(buttonDelete)
+
+        clickEvaluate(buttonEvaluate)
     }
 
     private fun evaluate() {
@@ -130,6 +115,33 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun clickDelete(button: Button) {
+        button.setOnClickListener {
+            if (input.text.isNotEmpty()) {
+                if (operatorsChar.contains(input.text.last()))
+                    operatorsCount--
+                input.text = input.text.substring(0, input.text.length - 1)
+                if (operatorsCount > 0 && !operatorsChar.contains(input.text.last())) {
+                    evaluate()
+                } else {
+                    output.text = ""
+                }
+            }
+            ensureLength()
+        }
+    }
+
+    private fun clickEvaluate(button: Button) {
+        button.setOnClickListener {
+            evaluate()
+            if (correct) {
+                input.text = output.text
+                output.text = ""
+            }
+            ensureLength()
+        }
+    }
+
     private fun ensureLength() {
         if (input.text.length > 9)
             input.textSize = 60F
@@ -142,4 +154,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.run {
+            putString("INPUT", input.text.toString())
+            putString("OUTPUT", output.text.toString())
+        }
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        input.text=savedInstanceState.getString("INPUT")
+        output.text=savedInstanceState.getString("OUTPUT")
+    }
 }
