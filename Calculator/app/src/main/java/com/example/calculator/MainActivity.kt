@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import net.objecthunter.exp4j.ExpressionBuilder
 import java.lang.Exception
 
-var operatorsCount: Int = 0
+var operatorsCounter: Int = 0
 val operatorsChar: Set<Char> = setOf('+', '-', '/', '*')
 var correct: Boolean = true
 
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun clickOperator(button: Button) {
         button.setOnClickListener {
-            operatorsCount++
+            operatorsCounter++
 
             if (input.text.isNotEmpty() && input.text.last()
                     .isDigit() || input.text.isEmpty() && button.text == "-"
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     private fun clickNumber(button: Button) {
         button.setOnClickListener {
             input.append(button.text.toString())
-            if (operatorsCount > 0) {
+            if (operatorsCounter > 0) {
                 evaluate()
             } else {
                 output.text = ""
@@ -119,9 +119,9 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             if (input.text.isNotEmpty()) {
                 if (operatorsChar.contains(input.text.last()))
-                    operatorsCount--
+                    operatorsCounter--
                 input.text = input.text.substring(0, input.text.length - 1)
-                if (operatorsCount > 0 && !operatorsChar.contains(input.text.last())) {
+                if (operatorsCounter > 0 && !operatorsChar.contains(input.text.last())) {
                     evaluate()
                 } else {
                     output.text = ""
@@ -156,15 +156,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.run {
-            putString("INPUT", input.text.toString())
-            putString("OUTPUT", output.text.toString())
+            putString("input", input.text.toString())
+            putString("output", output.text.toString())
+            putBoolean("correct", correct)
+            putInt("operatorsCounter",operatorsCounter)
         }
         super.onSaveInstanceState(outState)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        input.text=savedInstanceState.getString("INPUT")
-        output.text=savedInstanceState.getString("OUTPUT")
+        input.text=savedInstanceState.getString("input")
+        output.text=savedInstanceState.getString("output")
+        correct = savedInstanceState.getBoolean("correct")
+        operatorsCounter = savedInstanceState.getInt("operatorsCounter")
     }
 }
