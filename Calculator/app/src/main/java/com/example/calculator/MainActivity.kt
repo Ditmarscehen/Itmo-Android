@@ -123,7 +123,8 @@ class MainActivity : AppCompatActivity() {
                 if (operatorsChar.contains(input.text.last()))
                     operatorsCounter--
                 input.text = input.text.substring(0, input.text.length - 1)
-                if (operatorsCounter > 0 && !operatorsChar.contains(input.text.last())) {
+
+                if (input.text.isNotEmpty() && operatorsCounter > 0 && !operatorsChar.contains(input.text.last())) {
                     evaluate()
                 } else {
                     output.text = ""
@@ -139,6 +140,7 @@ class MainActivity : AppCompatActivity() {
             if (correct) {
                 input.text = output.text
                 output.text = ""
+                operatorsCounter = 0
             }
             ensureLength()
         }
