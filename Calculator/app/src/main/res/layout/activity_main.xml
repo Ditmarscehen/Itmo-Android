@@ -22,14 +22,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/greyDark"
-
-                >
+                android:background="@color/greyDark">
 
                 <TextView
                     android:id="@+id/input"
                     style="@style/ScrollableTextTheme"
-                    android:text="12345678912345678" />
+                    android:text="" />
             </HorizontalScrollView>
 
             <HorizontalScrollView
@@ -156,7 +154,6 @@
                 <Button
                     android:id="@+id/buttonAdd"
                     style="@style/OperatorsTheme"
-                    android:gravity="center"
                     android:text="@string/add" />
             </LinearLayout>
         </LinearLayout>
