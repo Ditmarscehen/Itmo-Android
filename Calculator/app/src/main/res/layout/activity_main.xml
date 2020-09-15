@@ -26,6 +26,8 @@
 
                 <TextView
                     android:id="@+id/input"
+                    android:textSize="80sp"
+                    android:textColor="@color/white"
                     style="@style/ScrollableTextTheme"
                     android:text="" />
             </HorizontalScrollView>
@@ -40,6 +42,8 @@
 
                 <TextView
                     android:id="@+id/output"
+                    android:textSize="60sp"
+                    android:textColor="@color/greyLight"
                     style="@style/ScrollableTextTheme"
                     android:text="" />
             </HorizontalScrollView>

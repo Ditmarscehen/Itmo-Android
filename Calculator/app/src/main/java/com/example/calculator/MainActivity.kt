@@ -61,12 +61,15 @@ class MainActivity : AppCompatActivity() {
                     input.text.toString().substring(0, input.text.length - 1)
                 ).build().evaluate()
             }
-            output.text = result.toString()
+            if (result.toLong().toDouble().equals(result))
+                output.text = result.toLong().toString()
+            else
+                output.text = result.toString()
             correct = true
         } catch (e: Exception) {
             output.text = e.message
             correct = false
-            Log.d("Exception: ", e.message.toString())
+
         }
     }
 
@@ -148,9 +151,9 @@ class MainActivity : AppCompatActivity() {
         else
             input.textSize = 80F
         if (output.text.length > 9)
-            output.textSize = 60F
+            output.textSize = 40F
         else
-            output.textSize = 80F
+            output.textSize = 60F
 
     }
 
@@ -159,15 +162,15 @@ class MainActivity : AppCompatActivity() {
             putString("input", input.text.toString())
             putString("output", output.text.toString())
             putBoolean("correct", correct)
-            putInt("operatorsCounter",operatorsCounter)
+            putInt("operatorsCounter", operatorsCounter)
         }
         super.onSaveInstanceState(outState)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        input.text=savedInstanceState.getString("input")
-        output.text=savedInstanceState.getString("output")
+        input.text = savedInstanceState.getString("input")
+        output.text = savedInstanceState.getString("output")
         correct = savedInstanceState.getBoolean("correct")
         operatorsCounter = savedInstanceState.getInt("operatorsCounter")
     }

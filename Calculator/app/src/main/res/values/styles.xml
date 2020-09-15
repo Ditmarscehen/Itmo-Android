@@ -13,7 +13,7 @@
     <color name="white">#FFFFFF</color>
     <color name="greyDark">#C8000000</color>
     <color name="blue">#2196F3</color>
-
+    <color name="greyLight">#7F8081</color>
 
     <style name="NumberTheme">
         <item name="android:textColor">@color/white</item>
@@ -36,8 +36,6 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:scrollHorizontally">true</item>
-        <item name="android:textSize">80sp</item>
-        <item name="android:textColor">@color/white</item>
         <item name="android:layout_gravity">center_vertical|right</item>
     </style>
 </resources>
