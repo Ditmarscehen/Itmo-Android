@@ -26,10 +26,10 @@
 
                 <TextView
                     android:id="@+id/input"
-                    android:textSize="80sp"
-                    android:textColor="@color/white"
                     style="@style/ScrollableTextTheme"
-                    android:text="" />
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="80sp" />
             </HorizontalScrollView>
 
             <HorizontalScrollView
@@ -42,10 +42,10 @@
 
                 <TextView
                     android:id="@+id/output"
-                    android:textSize="60sp"
-                    android:textColor="@color/greyLight"
                     style="@style/ScrollableTextTheme"
-                    android:text="" />
+                    android:text=""
+                    android:textColor="@color/greyLight"
+                    android:textSize="60sp" />
             </HorizontalScrollView>
         </LinearLayout>
 

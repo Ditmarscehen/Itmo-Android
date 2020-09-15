@@ -15,6 +15,6 @@
     <string name="divide">/</string>
     <string name="multiply">*</string>
     <string name="dot">.</string>
-    <string name="delete">delete</string>
+    <string name="delete">ce</string>
     <string name="evaluate">=</string>
 </resources>
