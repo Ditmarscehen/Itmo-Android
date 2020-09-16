@@ -16,32 +16,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val numbers: List<Button> = listOf(
-            button0,
-            button1,
-            button2,
-            button3,
-            button4,
-            button5,
-            button6,
-            button7,
-            button8,
-            button9
-        )
-        val operators: List<Button> = listOf(
-            buttonAdd,
-            buttonSubtract,
-            buttonMultiply,
-            buttonDivide
-        )
+        clickNumber(button0)
+        clickNumber(button1)
+        clickNumber(button2)
+        clickNumber(button3)
+        clickNumber(button4)
+        clickNumber(button5)
+        clickNumber(button6)
+        clickNumber(button7)
+        clickNumber(button8)
+        clickNumber(button9)
 
-        for (i in numbers) {
-            clickNumber(i)
-        }
-
-        for (i in operators) {
-            clickOperator(i)
-        }
+        clickOperator(buttonAdd)
+        clickOperator(buttonSubtract)
+        clickOperator(buttonMultiply)
+        clickOperator(buttonDivide)
 
         clickDot(buttonDot)
 
