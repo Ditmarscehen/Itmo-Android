@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                 while (i > 1 && input.text[i].isDigit()) {
                     i--
                 }
-                if (input.text[i] == '.') {
+                if (input.text[i] == '.'||input.text[i]=='E') {
                     t = false
                 }
                 if (t)
