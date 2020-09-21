@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="2" />
+        app:layout_constraintVertical_weight="1" />
 
     <TextView
         style="@style/day"
@@ -28,7 +28,7 @@
         android:text="Sergiev Posad"
         app:layout_constraintBottom_toTopOf="@+id/day0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="3"
+        app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
         app:layout_constraintVertical_weight="2" />
@@ -239,7 +239,6 @@
         app:layout_constraintVertical_weight="0.7" />
 
     <TextView
-        android:background="?attr/secondBackgroundColor"
         android:id="@+id/weather1"
         style="@style/weather"
         android:layout_width="0dp"
@@ -252,7 +251,6 @@
         app:layout_constraintVertical_weight="0.7" />
 
     <TextView
-        android:background="?attr/secondBackgroundColor"
         android:id="@+id/weather2"
         style="@style/weather"
         android:layout_width="0dp"
@@ -265,7 +263,6 @@
         app:layout_constraintVertical_weight="0.7" />
 
     <TextView
-        android:background="?attr/secondBackgroundColor"
         android:id="@+id/weather3"
         style="@style/weather"
         android:layout_width="0dp"
