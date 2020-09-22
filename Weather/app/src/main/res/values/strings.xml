@@ -4,4 +4,6 @@
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
     <string name="wednesday">Wednesday</string>
+    <string name="title">Weather</string>
+
 </resources>

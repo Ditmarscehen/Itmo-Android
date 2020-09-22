@@ -15,11 +15,12 @@
         android:background="?attr/secondBackgroundColor"
         android:text="@string/title"
         android:textColor="@color/greyLight"
-        app:layout_constraintBottom_toTopOf="@+id/city"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/day0"
+        app:layout_constraintEnd_toStartOf="@+id/city"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="2" />
+        app:layout_constraintVertical_weight="1.5" />
 
     <TextView
         android:id="@+id/city"
@@ -31,23 +32,23 @@
         app:layout_constraintBottom_toTopOf="@+id/day0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        app:layout_constraintVertical_weight="2" />
+        app:layout_constraintStart_toEndOf="@+id/title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1.5" />
 
     <TextView
         android:id="@+id/day0"
         style="@style/dayBase"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="1dp"
         android:text="Today"
         android:textColor="?attr/firstTextColor"
         app:layout_constraintBottom_toTopOf="@+id/date0"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/picture0"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/city"
-        app:layout_constraintVertical_weight="1.5" />
+        app:layout_constraintVertical_weight="2" />
 
     <TextView
         android:id="@+id/date0"
@@ -55,21 +56,26 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="21.09"
-        app:layout_constraintBottom_toTopOf="@+id/picture0"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/temperature0"
+        app:layout_constraintEnd_toStartOf="@+id/picture0"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/day0"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintVertical_weight="0.9" />
 
     <ImageView
+
         android:id="@+id/picture0"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/sun"
-        app:layout_constraintBottom_toTopOf="@+id/temperature0"
+        android:scaleType="fitStart"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/day1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date0"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/day0"
+        app:layout_constraintTop_toBottomOf="@+id/city"
         app:layout_constraintVertical_weight="5" />
 
     <TextView
@@ -79,10 +85,11 @@
         android:layout_height="0dp"
         android:text="20 \u2103"
         app:layout_constraintBottom_toTopOf="@+id/weather0"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/picture0"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/picture0"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintTop_toBottomOf="@+id/date0"
+        app:layout_constraintVertical_weight="1.3" />
 
     <TextView
         android:id="@+id/weather0"
@@ -91,10 +98,11 @@
         android:layout_height="0dp"
         android:text="@string/sunny"
         app:layout_constraintBottom_toTopOf="@+id/day2"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/picture0"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/temperature0"
-        app:layout_constraintVertical_weight="0.7" />
+        app:layout_constraintVertical_weight="0.9" />
 
     <TextView
         android:id="@+id/day1"
@@ -129,11 +137,50 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="4dp"
+        android:text="@string/tuesday"
+        app:layout_constraintBottom_toTopOf="@+id/date3"
+        app:layout_constraintEnd_toStartOf="@+id/day4"
+        app:layout_constraintStart_toEndOf="@+id/day2"
+        app:layout_constraintTop_toBottomOf="@+id/weather0"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/day4"
+        style="@style/day"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/tuesday"
+        app:layout_constraintBottom_toTopOf="@+id/date4"
+        app:layout_constraintEnd_toStartOf="@+id/day5"
+        app:layout_constraintStart_toEndOf="@+id/day3"
+        app:layout_constraintTop_toBottomOf="@+id/weather0"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/day5"
+        style="@style/day"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/tuesday"
+        app:layout_constraintBottom_toTopOf="@+id/date5"
+        app:layout_constraintEnd_toStartOf="@+id/day6"
+        app:layout_constraintStart_toEndOf="@+id/day4"
+        app:layout_constraintTop_toBottomOf="@+id/weather0"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/day6"
+        style="@style/day"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:text="@string/wednesday"
-        app:layout_constraintBottom_toTopOf="@+id/date3"
+        app:layout_constraintBottom_toTopOf="@+id/date6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/day2"
+        app:layout_constraintStart_toEndOf="@+id/day5"
         app:layout_constraintTop_toBottomOf="@+id/weather0"
         app:layout_constraintVertical_weight="1" />
 
@@ -167,12 +214,48 @@
         style="@style/date"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="4dp"
-        android:text="24.09"
+        android:text="23.09"
         app:layout_constraintBottom_toTopOf="@+id/picture3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/date4"
         app:layout_constraintStart_toEndOf="@+id/date2"
         app:layout_constraintTop_toBottomOf="@+id/day3"
+        app:layout_constraintVertical_weight="0.6" />
+
+    <TextView
+        android:id="@+id/date4"
+        style="@style/date"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="23.09"
+        app:layout_constraintBottom_toTopOf="@+id/picture4"
+        app:layout_constraintEnd_toStartOf="@+id/date5"
+        app:layout_constraintStart_toEndOf="@+id/date3"
+        app:layout_constraintTop_toBottomOf="@+id/day4"
+        app:layout_constraintVertical_weight="0.6" />
+
+    <TextView
+        android:id="@+id/date5"
+        style="@style/date"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="23.09"
+        app:layout_constraintBottom_toTopOf="@+id/picture5"
+        app:layout_constraintEnd_toStartOf="@+id/date6"
+        app:layout_constraintStart_toEndOf="@+id/date4"
+        app:layout_constraintTop_toBottomOf="@+id/day5"
+        app:layout_constraintVertical_weight="0.6" />
+
+    <TextView
+        android:id="@+id/date6"
+        style="@style/date"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
+        android:text="24.09"
+        app:layout_constraintBottom_toTopOf="@+id/picture6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/date5"
+        app:layout_constraintTop_toBottomOf="@+id/day6"
         app:layout_constraintVertical_weight="0.6" />
 
     <ImageView
@@ -206,12 +289,48 @@
         style="@style/picture"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="4dp"
         android:src="@drawable/sun"
         app:layout_constraintBottom_toTopOf="@+id/temperature3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/picture4"
         app:layout_constraintStart_toEndOf="@+id/picture2"
         app:layout_constraintTop_toBottomOf="@+id/date3"
+        app:layout_constraintVertical_weight="2.5" />
+
+    <ImageView
+        android:id="@+id/picture4"
+        style="@style/picture"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/sun"
+        app:layout_constraintBottom_toTopOf="@+id/temperature4"
+        app:layout_constraintEnd_toStartOf="@+id/picture5"
+        app:layout_constraintStart_toEndOf="@+id/picture3"
+        app:layout_constraintTop_toBottomOf="@+id/date4"
+        app:layout_constraintVertical_weight="2.5" />
+
+    <ImageView
+        android:id="@+id/picture5"
+        style="@style/picture"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/sun"
+        app:layout_constraintBottom_toTopOf="@+id/temperature5"
+        app:layout_constraintEnd_toStartOf="@+id/picture6"
+        app:layout_constraintStart_toEndOf="@+id/picture4"
+        app:layout_constraintTop_toBottomOf="@+id/date5"
+        app:layout_constraintVertical_weight="2.5" />
+
+    <ImageView
+        android:id="@+id/picture6"
+        style="@style/picture"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
+        android:src="@drawable/sun"
+        app:layout_constraintBottom_toTopOf="@+id/temperature6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/picture5"
+        app:layout_constraintTop_toBottomOf="@+id/date6"
         app:layout_constraintVertical_weight="2.5" />
 
     <TextView
@@ -246,12 +365,51 @@
         style="@style/temperature"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="4dp"
-        android:text="21 \u2103"
+        android:layout_weight="10"
+        android:text="26 \u2103"
         app:layout_constraintBottom_toTopOf="@+id/weather3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/temperature4"
         app:layout_constraintStart_toEndOf="@+id/temperature2"
         app:layout_constraintTop_toBottomOf="@+id/picture3"
+        app:layout_constraintVertical_weight="0.7" />
+
+    <TextView
+        android:id="@+id/temperature4"
+        style="@style/temperature"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="26 \u2103"
+        app:layout_constraintBottom_toTopOf="@+id/weather4"
+        app:layout_constraintEnd_toStartOf="@+id/temperature5"
+        app:layout_constraintStart_toEndOf="@+id/temperature3"
+        app:layout_constraintTop_toBottomOf="@+id/picture4"
+        app:layout_constraintVertical_weight="0.7" />
+
+    <TextView
+        android:id="@+id/temperature5"
+        style="@style/temperature"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="26 \u2103"
+        app:layout_constraintBottom_toTopOf="@+id/weather5"
+        app:layout_constraintEnd_toStartOf="@+id/temperature6"
+        app:layout_constraintStart_toEndOf="@+id/temperature4"
+        app:layout_constraintTop_toBottomOf="@+id/picture5"
+        app:layout_constraintVertical_weight="0.7" />
+
+    <TextView
+        android:id="@+id/temperature6"
+        style="@style/temperature"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
+        android:text="21 \u2103"
+        app:layout_constraintBottom_toTopOf="@+id/weather6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/temperature5"
+        app:layout_constraintTop_toBottomOf="@+id/picture6"
         app:layout_constraintVertical_weight="0.7" />
 
     <TextView
@@ -286,13 +444,52 @@
         style="@style/weather"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/sunny"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/weather4"
+        app:layout_constraintStart_toEndOf="@+id/weather2"
+        app:layout_constraintTop_toBottomOf="@+id/temperature3"
+        app:layout_constraintVertical_weight="0.7" />
+
+    <TextView
+        android:id="@+id/weather4"
+        style="@style/weather"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/sunny"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/weather5"
+        app:layout_constraintStart_toEndOf="@+id/weather3"
+        app:layout_constraintTop_toBottomOf="@+id/temperature4"
+        app:layout_constraintVertical_weight="0.7" />
+
+    <TextView
+        android:id="@+id/weather5"
+        style="@style/weather"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/sunny"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/weather6"
+        app:layout_constraintStart_toEndOf="@+id/weather4"
+        app:layout_constraintTop_toBottomOf="@+id/temperature5"
+        app:layout_constraintVertical_weight="0.7" />
+
+    <TextView
+        android:id="@+id/weather6"
+        style="@style/weather"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="10dp"
         android:text="@string/sunny"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/weather2"
-        app:layout_constraintTop_toBottomOf="@+id/temperature3"
+        app:layout_constraintStart_toEndOf="@+id/weather5"
+        app:layout_constraintTop_toBottomOf="@+id/temperature6"
         app:layout_constraintVertical_weight="0.7" />
 
 
