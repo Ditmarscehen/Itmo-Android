@@ -70,7 +70,6 @@ class MainActivity : AppCompatActivity() {
                     .isDigit() || input.text.isEmpty() && button.text == "-"
             )
                 input.append(button.text.toString())
-            ensureLength()
         }
 
     }
@@ -83,7 +82,6 @@ class MainActivity : AppCompatActivity() {
             } else {
                 output.text = ""
             }
-            ensureLength()
         }
 
     }
@@ -102,7 +100,6 @@ class MainActivity : AppCompatActivity() {
                 if (t)
                     input.append(button.text.toString())
             }
-            ensureLength()
         }
     }
 
@@ -118,8 +115,10 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     output.text = ""
                 }
+            }else{
+                operatorsCounter = 0
+                correct=true
             }
-            ensureLength()
         }
     }
 
@@ -131,21 +130,10 @@ class MainActivity : AppCompatActivity() {
                 output.text = ""
                 operatorsCounter = 0
             }
-            ensureLength()
         }
     }
 
-    private fun ensureLength() {
-        if (input.text.length > 9)
-            input.textSize = 60F
-        else
-            input.textSize = 80F
-        if (output.text.length > 9)
-            output.textSize = 40F
-        else
-            output.textSize = 60F
 
-    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.run {
