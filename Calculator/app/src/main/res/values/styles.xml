@@ -15,21 +15,21 @@
     <color name="blue">#2196F3</color>
     <color name="greyLight">#7F8081</color>
 
-    <style name="NumberTheme">
+    <style name="number">
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@color/greyDark</item>
         <item name="autoSizeTextType">uniform</item>
     </style>
 
-    <style name="OperatorsTheme" parent="NumberTheme">
+    <style name="operator" parent="number">
         <item name="android:textColor">@color/blue</item>
     </style>
 
-    <style name="LayoutTheme" parent="NumberTheme">
+    <style name="layout" parent="number">
         <item name="android:background">@color/white</item>
     </style>
 
-    <style name="ScrollableTextTheme">
+    <style name="scrollableText">
         <item name="android:scrollHorizontally">true</item>
     </style>
 </resources>

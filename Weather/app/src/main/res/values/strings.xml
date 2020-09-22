@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">Weather</string>
     <string name="sun">sun</string>
     <string name="sunday">Sunday</string>
     <string name="monday">Monday</string>
