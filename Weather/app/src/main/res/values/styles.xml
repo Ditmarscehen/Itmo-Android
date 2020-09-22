@@ -3,10 +3,10 @@
     <style name="LightTheme" parent="Theme.AppCompat.Light">
         <item name="firstTextColor">@color/blueDark</item>
         <item name="secondTextColor">@color/blue</item>
-        <item name="thirdTextColor">@color/greyLight</item>
+        <item name="thirdTextColor">@color/greyDark</item>
         <item name="firstBackgroundColor">@color/blueLight</item>
         <item name="secondBackgroundColor">@color/white</item>
-        <item name="thirdBackgroundColor">@color/colorAccent</item>
+        <item name="thirdBackgroundColor">@color/blueee</item>
     </style>
     <style name="DarkTheme" parent="Theme.AppCompat.Light">
         <item name="firstTextColor">@color/turquoise</item>
@@ -14,7 +14,7 @@
         <item name="thirdTextColor">@color/greyLight</item>
         <item name="firstBackgroundColor">@color/blueDark</item>
         <item name="secondBackgroundColor">@color/blue</item>
-        <item name="thirdBackgroundColor">@color/colorAccent</item>
+        <item name="thirdBackgroundColor">@color/blue</item>
     </style>
     <style name="main">
         <item name="autoSizeTextType">uniform</item>
