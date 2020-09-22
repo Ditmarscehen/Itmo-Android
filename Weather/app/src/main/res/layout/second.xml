@@ -1,0 +1,41 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/day2"
+        style="@style/day"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Monday"
+        />
+    <TextView
+        android:id="@+id/date2"
+        style="@style/date"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="22.09"
+        />
+    <ImageView
+        android:id="@+id/picture2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:src="@drawable/weather_sun"
+        />
+
+    <TextView
+        android:id="@+id/temperature2"
+        style="@style/temperature"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="+25"
+        />
+    <TextView
+        android:background="?attr/secondBackgroundColor"
+        android:id="@+id/weather2"
+        style="@style/weather"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="sunny"
+        />
+</merge>

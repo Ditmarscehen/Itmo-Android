@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="primaryTextColor" format="color" />
+    <attr name="firstTextColor" format="color" />
     <attr name="secondTextColor" format="color" />
     <attr name="thirdTextColor" format="color" />
-    <attr name="primaryBackgroundColor" format="color" />
+    <attr name="firstBackgroundColor" format="color" />
     <attr name="secondBackgroundColor" format="color" />
     <attr name="thirdBackgroundColor" format="color" />
+
 </resources>

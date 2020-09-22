@@ -1,12 +1,25 @@
 <resources>
-    <!-- Base application theme. -->
+
     <style name="LightTheme" parent="Theme.AppCompat.Light">
-        <item name="primaryTextColor">@color/black</item>
-        <item name="secondTextColor">@color/colorPrimaryDark</item>
-        <item name="thirdTextColor">@color/colorAccent</item>
-        <item name="primaryBackgroundColor">@color/blueLight</item>
+        <item name="firstTextColor">@color/blueDark</item>
+        <item name="secondTextColor">@color/blue</item>
+        <item name="thirdTextColor">@color/greyLight</item>
+        <item name="firstBackgroundColor">@color/blueLight</item>
         <item name="secondBackgroundColor">@color/white</item>
         <item name="thirdBackgroundColor">@color/colorAccent</item>
+    </style>
+    <style name="DarkTheme" parent="Theme.AppCompat.Light">
+        <item name="firstTextColor">@color/turquoise</item>
+        <item name="secondTextColor">@color/blueLight</item>
+        <item name="thirdTextColor">@color/greyLight</item>
+        <item name="firstBackgroundColor">@color/blueDark</item>
+        <item name="secondBackgroundColor">@color/blue</item>
+        <item name="thirdBackgroundColor">@color/colorAccent</item>
+    </style>
+    <style name="main">
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">?attr/firstBackgroundColor</item>
     </style>
 
     <style name="base">
@@ -14,23 +27,51 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="day" parent="base">
-        <item name="android:textColor">?attr/primaryTextColor</item>
+    <style name="picture">
+        <item name="android:background">?attr/secondBackgroundColor</item>
+    </style>
+
+    <style name="dayBase" parent="base">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/firstTextColor</item>
         <item name="android:padding">5dp</item>
     </style>
 
-    <style name="temperature" parent="base">
-        <item name="android:textColor">?attr/primaryTextColor</item>
-        <item name="android:padding">2dp</item>
-    </style>
-
-    <style name="weather" parent="base">
-        <item name="android:padding">2dp</item>
+    <style name="temperatureBase" parent="base">
         <item name="android:textColor">?attr/secondTextColor</item>
+        <item name="android:padding">2dp</item>
     </style>
 
-    <style name="date" parent="base">
-        <item name="android:paddingBottom">3dp</item>
+    <style name="weatherBase" parent="base">
+        <item name="android:padding">2dp</item>
         <item name="android:textColor">?attr/thirdTextColor</item>
+    </style>
+
+    <style name="dateBase" parent="base">
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textColor">?attr/thirdTextColor</item>
+    </style>
+
+    <style name="day" parent="dayBase">
+        <item name="android:background">?attr/secondBackgroundColor</item>
+
+
+    </style>
+
+    <style name="temperature" parent="temperatureBase">
+        <item name="android:background">?attr/secondBackgroundColor</item>
+
+
+    </style>
+
+    <style name="weather" parent="weatherBase">
+        <item name="android:background">?attr/secondBackgroundColor</item>
+
+    </style>
+
+    <style name="date" parent="dateBase">
+        <item name="android:background">?attr/secondBackgroundColor</item>
+
+
     </style>
 </resources>

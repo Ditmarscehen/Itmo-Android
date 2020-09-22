@@ -4,16 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/primaryBackgroundColor"
+    android:background="?attr/firstBackgroundColor"
     tools:context=".MainActivity">
 
     <TextView
-        style="@style/day"
-        android:background="?attr/secondBackgroundColor"
         android:id="@+id/title"
+        style="@style/main"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="  Weather"
+        android:background="?attr/secondBackgroundColor"
+        android:text="Weather"
+        android:textColor="@color/greyLight"
         app:layout_constraintBottom_toTopOf="@+id/city"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,11 +22,12 @@
         app:layout_constraintVertical_weight="2" />
 
     <TextView
-        style="@style/day"
         android:id="@+id/city"
+        style="@style/main"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Sergiev Posad"
+        android:textColor="?attr/secondTextColor"
         app:layout_constraintBottom_toTopOf="@+id/day0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="3"
@@ -35,11 +37,12 @@
 
     <TextView
         android:id="@+id/day0"
-        style="@style/day"
+        style="@style/dayBase"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="1dp"
         android:text="Today"
+        android:textColor="?attr/firstTextColor"
         app:layout_constraintBottom_toTopOf="@+id/date0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +51,7 @@
 
     <TextView
         android:id="@+id/date0"
-        style="@style/date"
+        style="@style/dateBase"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="21.09"
@@ -71,10 +74,10 @@
 
     <TextView
         android:id="@+id/temperature0"
-        style="@style/temperature"
+        style="@style/temperatureBase"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="+20"
+        android:text="20 \u2103"
         app:layout_constraintBottom_toTopOf="@+id/weather0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,10 +86,10 @@
 
     <TextView
         android:id="@+id/weather0"
-        style="@style/weather"
+        style="@style/weatherBase"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="sunny"
+        android:text="@string/sunny"
         app:layout_constraintBottom_toTopOf="@+id/day2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +101,9 @@
         style="@style/day"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Monday"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/monday"
         app:layout_constraintBottom_toTopOf="@+id/date1"
         app:layout_constraintEnd_toStartOf="@+id/day2"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +115,8 @@
         style="@style/day"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Tuesday"
+        android:layout_marginTop="4dp"
+        android:text="@string/tuesday"
         app:layout_constraintBottom_toTopOf="@+id/date2"
         app:layout_constraintEnd_toStartOf="@+id/day3"
         app:layout_constraintStart_toEndOf="@+id/day1"
@@ -122,7 +128,9 @@
         style="@style/day"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Wednesday"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/wednesday"
         app:layout_constraintBottom_toTopOf="@+id/date3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/day2"
@@ -134,12 +142,13 @@
         style="@style/date"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="4dp"
         android:text="22.09"
         app:layout_constraintBottom_toTopOf="@+id/picture1"
         app:layout_constraintEnd_toStartOf="@+id/date2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/day1"
-        app:layout_constraintVertical_weight="0.5" />
+        app:layout_constraintVertical_weight="0.6" />
 
     <TextView
         android:id="@+id/date2"
@@ -151,25 +160,27 @@
         app:layout_constraintEnd_toStartOf="@+id/date3"
         app:layout_constraintStart_toEndOf="@+id/date1"
         app:layout_constraintTop_toBottomOf="@+id/day2"
-        app:layout_constraintVertical_weight="0.5"
-         />
+        app:layout_constraintVertical_weight="0.6" />
 
     <TextView
         android:id="@+id/date3"
         style="@style/date"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
         android:text="24.09"
         app:layout_constraintBottom_toTopOf="@+id/picture3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/date2"
         app:layout_constraintTop_toBottomOf="@+id/day3"
-        app:layout_constraintVertical_weight="0.5" />
+        app:layout_constraintVertical_weight="0.6" />
 
     <ImageView
         android:id="@+id/picture1"
+        style="@style/picture"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="4dp"
         android:layout_weight="10"
         android:src="@drawable/weather_sun"
         app:layout_constraintBottom_toTopOf="@+id/temperature1"
@@ -180,6 +191,7 @@
 
     <ImageView
         android:id="@+id/picture2"
+        style="@style/picture"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/weather_sun"
@@ -191,8 +203,10 @@
 
     <ImageView
         android:id="@+id/picture3"
+        style="@style/picture"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
         android:src="@drawable/weather_sun"
         app:layout_constraintBottom_toTopOf="@+id/temperature3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -205,8 +219,9 @@
         style="@style/temperature"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="4dp"
         android:layout_weight="10"
-        android:text="+25"
+        android:text="25 \u2103"
         app:layout_constraintBottom_toTopOf="@+id/weather1"
         app:layout_constraintEnd_toStartOf="@+id/temperature2"
         app:layout_constraintStart_toStartOf="parent"
@@ -219,7 +234,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:text="+26"
+        android:text="26 \u2103"
         app:layout_constraintBottom_toTopOf="@+id/weather2"
         app:layout_constraintEnd_toStartOf="@+id/temperature3"
         app:layout_constraintStart_toEndOf="@+id/temperature1"
@@ -231,7 +246,8 @@
         style="@style/temperature"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="+21"
+        android:layout_marginEnd="4dp"
+        android:text="21 \u2103"
         app:layout_constraintBottom_toTopOf="@+id/weather3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/temperature2"
@@ -239,11 +255,12 @@
         app:layout_constraintVertical_weight="0.7" />
 
     <TextView
-        android:background="?attr/secondBackgroundColor"
         android:id="@+id/weather1"
         style="@style/weather"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="10dp"
         android:text="sunny"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/weather2"
@@ -252,11 +269,11 @@
         app:layout_constraintVertical_weight="0.7" />
 
     <TextView
-        android:background="?attr/secondBackgroundColor"
         android:id="@+id/weather2"
         style="@style/weather"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
         android:text="sunny"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/weather3"
@@ -265,11 +282,12 @@
         app:layout_constraintVertical_weight="0.7" />
 
     <TextView
-        android:background="?attr/secondBackgroundColor"
         android:id="@+id/weather3"
         style="@style/weather"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="10dp"
         android:text="sunny"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
