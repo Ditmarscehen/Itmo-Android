@@ -14,7 +14,7 @@
         android:layout_height="0dp"
         android:background="?attr/thirdBackgroundColor"
         android:text="@string/title"
-        android:textColor="@color/greyLight"
+        android:textColor="?attr/secondTextColor"
         app:layout_constraintBottom_toTopOf="@+id/city"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
