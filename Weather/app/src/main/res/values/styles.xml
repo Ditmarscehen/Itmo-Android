@@ -28,6 +28,7 @@
     </style>
 
     <style name="picture">
+        <item name="android:contentDescription">@string/descriptionWeather</item>
         <item name="android:background">?attr/secondBackgroundColor</item>
     </style>
 

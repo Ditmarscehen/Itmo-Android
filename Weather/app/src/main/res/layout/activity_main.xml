@@ -64,6 +64,7 @@
         android:id="@+id/picture0"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/descriptionWeather"
         android:src="@drawable/sun"
         app:layout_constraintBottom_toTopOf="@+id/temperature0"
         app:layout_constraintEnd_toEndOf="parent"

@@ -69,11 +69,11 @@
         app:layout_constraintVertical_weight="0.9" />
 
     <ImageView
-
         android:id="@+id/picture0"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="5dp"
+        android:contentDescription="@string/descriptionWeather"
         android:scaleType="fitStart"
         android:src="@drawable/sun"
         app:layout_constraintBottom_toTopOf="@+id/day1"

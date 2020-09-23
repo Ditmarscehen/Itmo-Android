@@ -17,4 +17,5 @@
     <string name="snow">snow</string>
     <string name="slit">slit</string>
     <string name="clouds">clouds</string>
+    <string name="descriptionWeather">weather</string>
 </resources>
