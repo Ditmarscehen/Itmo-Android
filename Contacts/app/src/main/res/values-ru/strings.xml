@@ -1,0 +1,11 @@
+<resources>
+    <plurals name="numberOfAddedContacts">
+        <item quantity="one">Добавлен %d контакт</item>
+        <item quantity="few">Добавлено %d контактов</item>
+        <item quantity="many">Добавлено %d котнактов</item>
+        <item quantity="other">Добавлено %d котнактов</item>
+
+    </plurals>
+    <string name="app_name">Контакты</string>
+    <string name="permisson_not_gained">приложение не работает без разрешения</string>
+</resources>
