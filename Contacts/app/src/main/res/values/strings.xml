@@ -1,0 +1,8 @@
+<resources>
+    <plurals name="numberOfAddedContacts">
+        <item quantity="one">Added %d contact.</item>
+        <item quantity="other">Added %d contacts.</item>
+    </plurals>
+    <string name="app_name">Contacts</string>
+    <string name="permisson_not_gained">app does not work withou permisiion</string>
+</resources>
