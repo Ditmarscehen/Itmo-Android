@@ -1,5 +1,6 @@
 <resources>
     <plurals name="numberOfAddedContacts">
+      
         <item quantity="one">Добавлен %d контакт</item>
         <item quantity="few">Добавлено %d контактов</item>
         <item quantity="many">Добавлено %d котнактов</item>
