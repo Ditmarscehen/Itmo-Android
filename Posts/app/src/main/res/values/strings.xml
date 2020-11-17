@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Posts</string>
+    <string name="add_post">add Post</string>
+    <string name="delete_post">delete post</string>
+    <string name="write_title">Write title</string>
+    <string name="write_body">write body</string>
+    <string name="ok">ok</string>
+    <string name="create">create</string>
+    <string name="cancel">cancel</string>
+</resources>
