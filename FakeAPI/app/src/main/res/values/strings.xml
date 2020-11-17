@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FakeAPI</string>
+    <string name="add_post">add Post</string>
+    <string name="delete_post">delete post</string>
+</resources>
