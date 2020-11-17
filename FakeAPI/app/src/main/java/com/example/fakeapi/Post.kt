@@ -8,7 +8,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Post(
+data class Post(
     val userId: Int?,
     var id: Int? ,
     val title: String?,

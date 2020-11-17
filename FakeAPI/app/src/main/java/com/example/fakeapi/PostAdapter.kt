@@ -18,7 +18,7 @@ class PostAdapter(
         fun onAddClick(id:Int?)
     }
 
-    class PostViewHolder(var root: View, val listener: OnItemClickListener?) :
+    class PostViewHolder(var root: View, private val listener: OnItemClickListener?) :
         RecyclerView.ViewHolder(root) {
         fun bind(post: Post) {
             with(root) {
