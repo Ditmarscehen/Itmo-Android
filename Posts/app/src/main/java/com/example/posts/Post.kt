@@ -1,10 +1,7 @@
 package com.example.posts
 
-import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
-import android.provider.ContactsContract
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable

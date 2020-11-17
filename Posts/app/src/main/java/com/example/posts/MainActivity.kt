@@ -1,27 +1,19 @@
 package com.example.posts
 
-import android.annotation.SuppressLint
-import android.icu.text.CaseMap
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.input.*
-import kotlinx.android.synthetic.main.input.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : InputDialog.DialogListener, AppCompatActivity() {
     var posts: ArrayList<Post> = arrayListOf()
-    var dialogShown: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,18 +33,15 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelableArrayList("posts", posts)
-        outState.putBoolean("dialogShown", dialogShown)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         posts = savedInstanceState.getParcelableArrayList("posts")!!
-        dialogShown = savedInstanceState.getBoolean("dialogShown")
-
     }
 
     private fun draw(posts: List<Post>) {
-        usersRecyclerView.apply {
+        postsRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = PostAdapter(posts, object : PostAdapter.OnItemClickListener {
                 override fun onAddClick(id: Int?) {
@@ -133,27 +122,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun drawDialog() {
-        val dialogBuilder = AlertDialog.Builder(this).create()
-        val inflater = this.layoutInflater
-        val inputView = inflater.inflate(R.layout.input, null)
-        val create = inputView.create as Button
-        val cancel = inputView.cancel as Button
-        val titleText = inputView.input_title as EditText
-        val bodyText = inputView.input_body as EditText
-        create.setOnClickListener {
-            val title = titleText.text.toString()
-            val body = bodyText.text.toString()
-            dialogBuilder.dismiss()
-            dialogShown = false
-            postPost(title, body)
-        }
-        cancel.setOnClickListener {
-            dialogBuilder.dismiss()
-            dialogShown = false
-        }
-        dialogBuilder.setView(inputView)
-        dialogBuilder.show()
-        dialogShown = true
+        val dialog = InputDialog()
+        dialog.show(supportFragmentManager, "input dialog")
+    }
+
+    override fun applyData(title: String, body: String) {
+        postPost(title, body)
     }
 
 }

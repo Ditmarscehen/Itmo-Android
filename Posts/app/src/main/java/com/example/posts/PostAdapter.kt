@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.list_item.view.*
 
 class PostAdapter(
     private val posts: List<Post>,
-    private val mListenr: OnItemClickListener
+    private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
 
@@ -18,7 +18,7 @@ class PostAdapter(
         fun onAddClick(id:Int?)
     }
 
-    class PostViewHolder(var root: View, private val listener: OnItemClickListener?) :
+    class PostViewHolder(private var root: View, private val listener: OnItemClickListener?) :
         RecyclerView.ViewHolder(root) {
         fun bind(post: Post) {
             with(root) {
@@ -39,7 +39,7 @@ class PostAdapter(
             LayoutInflater
                 .from(parent.context)
                 .inflate(R.layout.list_item, parent, false),
-            mListenr
+            listener
         )
     }
 
