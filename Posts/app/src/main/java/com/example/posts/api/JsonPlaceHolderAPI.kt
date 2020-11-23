@@ -1,4 +1,4 @@
-    package com.example.posts
+    package com.example.posts.api
 
 import retrofit2.Call
 import retrofit2.http.*

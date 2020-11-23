@@ -4,28 +4,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-
+import com.example.posts.api.Post
+import com.example.posts.db.PostDB
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class PostAdapter(
-    private val posts: List<Post>,
+    private val posts: ArrayList<Post>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
 
-
     interface OnItemClickListener {
-        fun onAddClick(id:Int?)
+        fun onDeleteClick(id: Int)
     }
 
     class PostViewHolder(private var root: View, private val listener: OnItemClickListener?) :
         RecyclerView.ViewHolder(root) {
-        fun bind(post: Post) {
+        fun bind(post: Post?) {
             with(root) {
-                title.text = post.title
-                body.text = post.body
-                deleteButton.setOnClickListener {
-                    listener?.onAddClick(post.id)
+                post?.let {
+                    title.text = "${post.id} ${post.title}"
+                    body.text = post.body
+                    deleteButton.setOnClickListener {
+                        listener?.onDeleteClick(post.id)
+                    }
                 }
             }
         }
@@ -34,7 +36,6 @@ class PostAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
             : PostViewHolder {
-
         return PostViewHolder(
             LayoutInflater
                 .from(parent.context)
@@ -47,8 +48,12 @@ class PostAdapter(
     override fun onBindViewHolder(
         holder: PostViewHolder,
         position: Int
-    ) = holder.bind(posts[position])
+    ) {
 
+            val post = posts[position]
+            holder.bind(post)
+
+    }
 
     override fun getItemCount(): Int = posts.size
 }
