@@ -3,6 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorBlack"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -10,45 +11,46 @@
         android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardMaxElevation="3dp"
+        android:background="@color/colorBlack"
         card_view:cardElevation="3dp"
-        card_view:cardUseCompatPadding="true"
-        >
+        card_view:cardMaxElevation="3dp"
+        card_view:cardUseCompatPadding="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark">
+
             <TextView
-                style="@style/styleText"
-                android:textStyle="bold"
                 android:id="@+id/title"
+                style="@style/styleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_toStartOf="@+id/deleteButton"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
-                style="@style/styleText"
-                android:paddingStart="10dp"
-                android:paddingEnd="3dp"
                 android:id="@+id/body"
+                style="@style/styleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
-                android:layout_toStartOf="@+id/deleteButton"
                 android:layout_alignParentStart="true"
-                />
+                android:layout_toStartOf="@+id/deleteButton"
+                android:paddingStart="10dp"
+                android:paddingEnd="3dp" />
 
             <ImageButton
                 android:id="@+id/deleteButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                card_view:srcCompat="@android:drawable/ic_menu_delete"
+                android:background="@color/colorPrimaryDark"
                 android:contentDescription="@string/delete_post"
-                />
+                card_view:srcCompat="@android:drawable/ic_menu_delete" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

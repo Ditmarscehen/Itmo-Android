@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.posts.api.Post
-import com.example.posts.db.PostDB
 import kotlinx.android.synthetic.main.list_item.view.*
 
 class PostAdapter(
@@ -23,7 +22,7 @@ class PostAdapter(
         fun bind(post: Post?) {
             with(root) {
                 post?.let {
-                    title.text = "${post.id} ${post.title}"
+                    title.text = post.title
                     body.text = post.body
                     deleteButton.setOnClickListener {
                         listener?.onDeleteClick(post.id)

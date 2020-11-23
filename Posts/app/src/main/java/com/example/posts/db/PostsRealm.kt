@@ -6,55 +6,32 @@ import io.realm.kotlin.where
 import java.lang.Exception
 
 class PostsRealm : PostsRealmInterface {
-    override fun addPostDB(realm: Realm, postDB: PostDB): Boolean {
-        return try {
-            realm.executeTransaction { _ ->
-                realm.insert(postDB)
-            }
-            true
-        } catch (e: Exception) {
-            false
+    override fun addPostDB(realm: Realm, postDB: PostDB) {
+        realm.executeTransaction {
+            realm.insert(postDB)
         }
     }
 
-    override fun addPostsDB(realm: Realm, postsDB: List<PostDB>): Boolean {
-        return try {
-            realm.executeTransaction { _ ->
-                realm.insert(postsDB)
-            }
-            true
-        } catch (e: Exception) {
-            false
+    override fun addPostsDB(realm: Realm, postsDB: List<PostDB>) {
+        realm.executeTransaction {
+            realm.insert(postsDB)
         }
     }
 
     override fun deletePostDB(realm: Realm, postDB: RealmResults<PostDB>) {
-        try {
-            realm.executeTransaction { _ ->
-                postDB.deleteAllFromRealm()
-            }
-        } catch (e: Exception) {
-
+        realm.executeTransaction {
+            postDB.deleteAllFromRealm()
         }
     }
 
     override fun getPostDB(realm: Realm, postId: Int): RealmResults<PostDB>? {
-        return try {
-            realm.where<PostDB>().equalTo("id", postId).findAll()
-        } catch (e:Exception){
-            null
-        }
+        return realm.where<PostDB>().equalTo("id", postId).findAll()
     }
 
-    override fun clearRealm(realm: Realm): Boolean {
-        return try {
-            realm.executeTransaction { _ ->
+    override fun clearRealm(realm: Realm) {
+            realm.executeTransaction {
                 realm.deleteAll()
             }
-            true
-        } catch (e: Exception) {
-            false
-        }
     }
 
     fun getAll(realm: Realm): RealmResults<PostDB> {

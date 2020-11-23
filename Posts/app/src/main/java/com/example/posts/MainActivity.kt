@@ -9,131 +9,74 @@ import com.example.posts.api.Post
 import com.example.posts.db.PostDB
 import com.example.posts.db.PostsRealm
 import io.realm.Realm
-
-
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 import kotlin.random.Random
 
 
 class MainActivity : InputDialog.DialogListener, AppCompatActivity() {
     var posts: ArrayList<Post> = arrayListOf()
     val realm: Realm = Realm.getDefaultInstance()
-    lateinit var postAdapter: PostAdapter
+    private lateinit var postAdapter: PostAdapter
     private val postsRealm = PostsRealm()
     private val idSet = HashSet<Int>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (savedInstanceState != null) {
-            progressBar.visibility = View.GONE
-            draw(savedInstanceState.getParcelableArrayList("posts")!!)
-        } else {
-            if (!loadFromDB(realm)) {
-                getPosts()
-            }
-        }
+        loadFromDB(realm)
         addPost()
         reset()
-    }
-
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList("posts", posts)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        posts = savedInstanceState.getParcelableArrayList("posts")!!
-    }
-
-    private fun draw(posts: ArrayList<Post>) {
-        postAdapter = PostAdapter(posts, object : PostAdapter.OnItemClickListener {
-            override fun onDeleteClick(id: Int) {
-                deletePost(id)
-                deletePostBD(realm, id)
-            }
-        })
-        postsRecyclerView.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = postAdapter
-        }
-
 
     }
 
-    private fun getPosts() {
+
+    private fun getPostsApi() {
         val call: Call<List<Post>> = ApiApp.instance.jsonPlaceHolderApi.fetchAllPosts()
         call.enqueue(object : Callback<List<Post>> {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
                 posts = ArrayList(response.body()!!)
                 draw(posts)
                 progressBar.visibility = View.GONE
-                //makeToast("loading post code: ${response.code()}")
+                makeToast("loading post code: ${response.code()}")
                 updateDB(realm, posts.map { PostDB(it) })
             }
 
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
-                //makeToast(t.message.toString())
+                makeToast(t.message.toString())
             }
         })
 
     }
 
-    private fun postPost(title: String, body: String) {
+    private fun postPostApi(title: String, body: String) {
         val post = Post(23, 256, title, body)
         val call = ApiApp.instance.jsonPlaceHolderApi.createPost(post)
         call.enqueue(object : Callback<Post> {
             override fun onResponse(call: Call<Post>, response: Response<Post>) {
-                //makeToast("posting post code: ${response.code()}")
+                makeToast("posting post code: ${response.code()}")
             }
 
             override fun onFailure(call: Call<Post>, t: Throwable) {
-                //makeToast(t.message.toString())
+                makeToast(t.message.toString())
             }
-
         })
     }
 
-    fun deletePost(id: Int?) {
-
+    fun deletePostApi(id: Int?) {
         val call = ApiApp.instance.jsonPlaceHolderApi.deletePost(id)
         call.enqueue(object : Callback<Unit> {
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                //makeToast("deleting post $id with code: ${response.code()}")
+                makeToast("deleting post code: ${response.code()}")
             }
 
             override fun onFailure(call: Call<Unit>, t: Throwable) {
-                //makeToast(t.message.toString())
+                makeToast(t.message.toString())
             }
-
         })
     }
 
-
-    private fun findId(): Int {
-        var id = Random.nextInt(0, Int.MAX_VALUE)
-        while (idSet.contains(id))
-            id = Random.nextInt(0, Int.MAX_VALUE)
-        idSet.add(id)
-        return id
-    }
-
-    private fun addPost() {
-        addButton.setOnClickListener {
-            drawDialog()
-        }
-    }
-
-    private fun reset() {
-        resetBtn.setOnClickListener {
-            getPosts()
-        }
-    }
 
     private fun updateDB(realm: Realm, posts: List<PostDB>) {
         postsRealm.clearRealm(realm)
@@ -149,37 +92,41 @@ class MainActivity : InputDialog.DialogListener, AppCompatActivity() {
     }
 
     private fun deletePostBD(realm: Realm, id: Int) {
-        try {
-            val postDB = postsRealm.getPostDB(realm, id)
-            postDB?.let {
-                if (postDB.isNotEmpty()) {
-                    val post = postDB.first()
-                    val pos = posts.indexOf(Post(post!!))
-                    idSet.remove(post.id)
-                    postsRealm.deletePostDB(realm, postDB)
-                    posts.removeAt(pos)
-                    postAdapter.notifyItemRemoved(pos)
-                }
+        val postDB = postsRealm.getPostDB(realm, id)
+        postDB?.let {
+            if (postDB.isNotEmpty()) {
+                val post = postDB.first()
+                val pos = posts.indexOf(Post(post!!))
+                idSet.remove(post.id)
+                postsRealm.deletePostDB(realm, postDB)
+                posts.removeAt(pos)
+                postAdapter.notifyItemRemoved(pos)
             }
-        } catch (e: Exception) {
-
         }
     }
 
-    private fun loadFromDB(realm: Realm): Boolean {
+    private fun loadFromDB(realm: Realm) {
         val a = postsRealm.getAll(realm)
-        return if (a.size != 0) {
-            posts.clear()
-            a.forEach {
-                posts.add(Post(it))
-                idSet.add(it.id)
-            }
-            draw(posts)
-            progressBar.visibility = View.GONE
-            true
-        } else {
-            false
+        posts.clear()
+        a.forEach {
+            posts.add(Post(it))
+            idSet.add(it.id)
         }
+        draw(posts)
+        progressBar.visibility = View.GONE
+    }
+
+    override fun applyData(title: String, body: String) {
+        postPostApi(title, body)
+        postPostDB(realm, title, body)
+    }
+
+    private fun findId(): Int {
+        var id = Random.nextInt(0, Int.MAX_VALUE)
+        while (idSet.contains(id))
+            id = Random.nextInt(0, Int.MAX_VALUE)
+        idSet.add(id)
+        return id
     }
 
     private fun drawDialog() {
@@ -187,19 +134,29 @@ class MainActivity : InputDialog.DialogListener, AppCompatActivity() {
         dialog.show(supportFragmentManager, "input dialog")
     }
 
-    override fun applyData(title: String, body: String) {
-        postPost(title, body)
-        postPostDB(realm, title, body)
+    private fun addPost() {
+        addButton.setOnClickListener {
+            drawDialog()
+        }
     }
 
-    private fun updatePosts() {
-        posts.clear()
-        val a = postsRealm.getAll(realm)
-        a.forEach {
-            posts.add(Post(it))
-            idSet.add(it.id)
+    private fun reset() {
+        resetBtn.setOnClickListener {
+            getPostsApi()
         }
+    }
 
+    private fun draw(posts: ArrayList<Post>) {
+        postAdapter = PostAdapter(posts, object : PostAdapter.OnItemClickListener {
+            override fun onDeleteClick(id: Int) {
+                deletePostApi(id)
+                deletePostBD(realm, id)
+            }
+        })
+        postsRecyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = postAdapter
+        }
     }
 
     private fun makeToast(string: String) {
