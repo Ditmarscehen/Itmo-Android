@@ -28,11 +28,11 @@ class MainActivity : InputDialog.DialogListener, AppCompatActivity() {
         loadFromDB(realm)
         addPost()
         reset()
-
     }
 
 
     private fun getPostsApi() {
+        progressBar.visibility = View.VISIBLE
         val call: Call<List<Post>> = ApiApp.instance.jsonPlaceHolderApi.fetchAllPosts()
         call.enqueue(object : Callback<List<Post>> {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
@@ -44,6 +44,7 @@ class MainActivity : InputDialog.DialogListener, AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+                progressBar.visibility = View.GONE
                 makeToast(t.message.toString())
             }
         })
@@ -70,7 +71,6 @@ class MainActivity : InputDialog.DialogListener, AppCompatActivity() {
             override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                 makeToast("deleting post code: ${response.code()}")
             }
-
             override fun onFailure(call: Call<Unit>, t: Throwable) {
                 makeToast(t.message.toString())
             }
@@ -106,6 +106,7 @@ class MainActivity : InputDialog.DialogListener, AppCompatActivity() {
     }
 
     private fun loadFromDB(realm: Realm) {
+        progressBar.visibility = View.VISIBLE
         val a = postsRealm.getAll(realm)
         posts.clear()
         a.forEach {
