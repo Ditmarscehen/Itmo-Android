@@ -5,36 +5,40 @@ import io.realm.RealmResults
 import io.realm.kotlin.where
 import java.lang.Exception
 
-class PostsRealm : PostsRealmInterface {
-    override fun addPostDB(realm: Realm, postDB: PostDB) {
+class PostsRealm(private val realm: Realm) {
+
+    fun addPostDB( postDB: PostDB) {
         realm.executeTransaction {
             realm.insert(postDB)
         }
     }
 
-    override fun addPostsDB(realm: Realm, postsDB: List<PostDB>) {
+    private fun addPostsDB(postsDB: List<PostDB>) {
         realm.executeTransaction {
             realm.insert(postsDB)
         }
     }
 
-    override fun deletePostDB(realm: Realm, postDB: RealmResults<PostDB>) {
+    fun deletePostDB( postDB: RealmResults<PostDB>) {
         realm.executeTransaction {
             postDB.deleteAllFromRealm()
         }
     }
 
-    override fun getPostDB(realm: Realm, postId: Int): RealmResults<PostDB>? {
+    fun getPostDB( postId: Int): RealmResults<PostDB>? {
         return realm.where<PostDB>().equalTo("id", postId).findAll()
     }
 
-    override fun clearRealm(realm: Realm) {
-            realm.executeTransaction {
-                realm.deleteAll()
-            }
+    private fun clearRealm() {
+        realm.executeTransaction {
+            realm.deleteAll()
+        }
     }
-
-    fun getAll(realm: Realm): RealmResults<PostDB> {
+    fun updateDB(posts: List<PostDB>) {
+        clearRealm()
+        addPostsDB(posts)
+    }
+    fun getAll(): RealmResults<PostDB> {
         return realm.where<PostDB>().findAll()
     }
 }

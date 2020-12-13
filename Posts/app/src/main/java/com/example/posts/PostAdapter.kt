@@ -48,10 +48,8 @@ class PostAdapter(
         holder: PostViewHolder,
         position: Int
     ) {
-
-            val post = posts[position]
-            holder.bind(post)
-
+        val post = posts[position]
+        holder.bind(post)
     }
 
     override fun getItemCount(): Int = posts.size

@@ -1,16 +1,17 @@
-    package com.example.posts.api
+package com.example.posts.api
 
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 
 interface JsonPlaceHolderApi {
     @GET("posts")
-    fun fetchAllPosts():Call<List<Post>>
+    suspend fun fetchAllPosts(): Response<List<Post>>
 
     @POST("posts")
-    fun createPost(@Body post: Post):Call<Post>
+    suspend fun createPost(@Body post: Post): Response<Post>
 
     @DELETE("posts/{id}")
-    fun deletePost(@Path("id") id:Int?):Call<Unit>
+    suspend fun deletePost(@Path("id") id: Int?): Response<Unit>
 }

@@ -4,28 +4,28 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.posts.api.Post
 import com.example.posts.db.PostDB
 import com.example.posts.db.PostsRealm
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.launch
+import retrofit2.*
 import kotlin.random.Random
 
 
 class MainActivity : InputDialog.DialogListener, AppCompatActivity() {
     var posts: ArrayList<Post> = arrayListOf()
-    val realm: Realm = Realm.getDefaultInstance()
+    private val realm: Realm = Realm.getDefaultInstance()
     private lateinit var postAdapter: PostAdapter
-    private val postsRealm = PostsRealm()
+    private val postsRealm = PostsRealm(realm)
     private val idSet = HashSet<Int>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        loadFromDB(realm)
+        loadFromDB()
         addPost()
         reset()
     }
@@ -33,81 +33,82 @@ class MainActivity : InputDialog.DialogListener, AppCompatActivity() {
 
     private fun getPostsApi() {
         progressBar.visibility = View.VISIBLE
-        val call: Call<List<Post>> = ApiApp.instance.jsonPlaceHolderApi.fetchAllPosts()
-        call.enqueue(object : Callback<List<Post>> {
-            override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
-                posts = ArrayList(response.body()!!)
-                draw(posts)
-                progressBar.visibility = View.GONE
-                makeToast("loading post code: ${response.code()}")
-                updateDB(realm, posts.map { PostDB(it) })
-            }
-
-            override fun onFailure(call: Call<List<Post>>, t: Throwable) {
+        lifecycle.coroutineScope.launch {
+            try {
+                val response = ApiApp.instance.jsonPlaceHolderApi.fetchAllPosts()
+                if (response.isSuccessful) {
+                    posts = ArrayList(response.body()!!)
+                    draw(posts)
+                    progressBar.visibility = View.GONE
+                    makeToast("loading post code: ${response.code()}")
+                    postsRealm.updateDB(posts.map { PostDB(it) })
+                } else {
+                    progressBar.visibility = View.GONE
+                    makeToast("error")
+                }
+            } catch (t: Throwable) {
                 progressBar.visibility = View.GONE
                 makeToast(t.message.toString())
             }
-        })
-
+        }
     }
 
     private fun postPostApi(title: String, body: String) {
-        val post = Post(23, 256, title, body)
-        val call = ApiApp.instance.jsonPlaceHolderApi.createPost(post)
-        call.enqueue(object : Callback<Post> {
-            override fun onResponse(call: Call<Post>, response: Response<Post>) {
-                makeToast("posting post code: ${response.code()}")
-            }
-
-            override fun onFailure(call: Call<Post>, t: Throwable) {
+        lifecycle.coroutineScope.launch {
+            try {
+                val post = Post(23, 256, title, body)
+                val response = ApiApp.instance.jsonPlaceHolderApi.createPost(post)
+                if (response.isSuccessful)
+                    makeToast("posting post code: ${response.code()}")
+                else
+                    makeToast("error")
+            } catch (t: Throwable) {
                 makeToast(t.message.toString())
             }
-        })
+        }
     }
 
     fun deletePostApi(id: Int?) {
-        val call = ApiApp.instance.jsonPlaceHolderApi.deletePost(id)
-        call.enqueue(object : Callback<Unit> {
-            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                makeToast("deleting post code: ${response.code()}")
-            }
-            override fun onFailure(call: Call<Unit>, t: Throwable) {
+        lifecycle.coroutineScope.launch {
+            try {
+                val response = ApiApp.instance.jsonPlaceHolderApi.deletePost(id)
+                if (response.isSuccessful)
+                    makeToast("deleting post code: ${response.code()}")
+                else
+                    makeToast("error")
+            } catch (t: Throwable) {
                 makeToast(t.message.toString())
             }
-        })
+        }
     }
 
 
-    private fun updateDB(realm: Realm, posts: List<PostDB>) {
-        postsRealm.clearRealm(realm)
-        postsRealm.addPostsDB(realm, posts)
-    }
 
-    private fun postPostDB(realm: Realm, title: String, body: String) {
+    private fun postPostDB(title: String, body: String) {
         val id = findId()
         val postDB = PostDB(1, id, title, body)
-        postsRealm.addPostDB(realm, postDB)
+        postsRealm.addPostDB(postDB)
         posts.add(Post(postDB))
         postAdapter.notifyItemInserted(posts.size - 1)
     }
 
-    private fun deletePostBD(realm: Realm, id: Int) {
-        val postDB = postsRealm.getPostDB(realm, id)
+    private fun deletePostBD(id: Int) {
+        val postDB = postsRealm.getPostDB(id)
         postDB?.let {
             if (postDB.isNotEmpty()) {
                 val post = postDB.first()
                 val pos = posts.indexOf(Post(post!!))
                 idSet.remove(post.id)
-                postsRealm.deletePostDB(realm, postDB)
+                postsRealm.deletePostDB(postDB)
                 posts.removeAt(pos)
                 postAdapter.notifyItemRemoved(pos)
             }
         }
     }
 
-    private fun loadFromDB(realm: Realm) {
+    private fun loadFromDB() {
         progressBar.visibility = View.VISIBLE
-        val a = postsRealm.getAll(realm)
+        val a = postsRealm.getAll()
         posts.clear()
         a.forEach {
             posts.add(Post(it))
@@ -119,7 +120,7 @@ class MainActivity : InputDialog.DialogListener, AppCompatActivity() {
 
     override fun applyData(title: String, body: String) {
         postPostApi(title, body)
-        postPostDB(realm, title, body)
+        postPostDB(title, body)
     }
 
     private fun findId(): Int {
@@ -151,7 +152,7 @@ class MainActivity : InputDialog.DialogListener, AppCompatActivity() {
         postAdapter = PostAdapter(posts, object : PostAdapter.OnItemClickListener {
             override fun onDeleteClick(id: Int) {
                 deletePostApi(id)
-                deletePostBD(realm, id)
+                deletePostBD(id)
             }
         })
         postsRecyclerView.apply {
