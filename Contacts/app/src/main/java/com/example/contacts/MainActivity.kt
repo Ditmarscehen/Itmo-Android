@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun getPermission() {
+    private fun getPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
             != PackageManager.PERMISSION_GRANTED
         ) {
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun drawRecycleView() {
+    private fun drawRecycleView() {
         contactsList = fetchAllContacts()
         val viewManager = LinearLayoutManager(this)
         contactsRecyclerView.apply {

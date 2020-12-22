@@ -3,7 +3,7 @@ package com.example.calculator
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.example.calculator.expression.generic.*
+import com.example.calculator.expression.generic.GenericTabulator.*
 import com.example.calculator.expression.generic.operations.IntOperation
 import com.example.calculator.expression.parser.ExpressionParser
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         clickNumber(button0)
         clickNumber(button1)
         clickNumber(button2)
@@ -45,9 +44,9 @@ class MainActivity : AppCompatActivity() {
         val result: Int
         try {
             result = if (input.text.last().isDigit()) {
-                ExpressionParser(IntOperation()).parse(input.text.toString()).evaluate(0,0,0)
+                evaluateInt(input.text.toString())
             } else {
-                ExpressionParser(IntOperation()).parse(input.text.toString().substring(0, input.text.length - 1)).evaluate(0,0,0)
+              evaluateInt(input.text.toString().substring(0, input.text.length - 1))
             }
             output.text = result.toString()
             correct = true

@@ -63,7 +63,7 @@ public class IntOperation implements Operation<Integer> {
         return x / y;
     }
 
-    private void checkedDiv(Integer x, Integer y) throws ExpressionException{
+    private void checkedDiv(Integer x, Integer y) throws ExpressionException {
         if (y == 0) {
             throw new DivideByZero(x + " / " + y);
         }
@@ -85,7 +85,6 @@ public class IntOperation implements Operation<Integer> {
     }
 
 
-    //----PREVIOUS OPERATIONS ONLY FOR INTEGERS-------
     public Integer pow2(Integer x) throws ExpressionException {
         checkedPow(x);
         return 1 << x;
@@ -122,7 +121,6 @@ public class IntOperation implements Operation<Integer> {
     }
 
 
-    //-----CMM MODIFICATION FOR COUNT/MIN/MAX-------
     @Override
     public Integer min(Integer x, Integer y) throws ExpressionException {
         return (x > y) ? y : x;

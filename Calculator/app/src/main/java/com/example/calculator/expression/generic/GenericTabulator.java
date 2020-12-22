@@ -27,7 +27,11 @@ public class GenericTabulator implements Tabulator {
     public Object[][][] tabulate(String mode, String expression, int x1, int x2, int y1, int y2, int z1, int z2) throws ExpressionException {
         return tabulateT(operationMode(mode), expression, x1, x2, y1, y2, z1, z2);
     }
-
+    public static Integer evaluateInt(String expression){
+        ExpressionParser<Integer> parser = new ExpressionParser<>(new IntOperation());
+        TripleExpression<Integer> parse = parser.parse(expression);
+        return parse.evaluate(0,0,0);
+    }
     private <T> Object[][][] tabulateT(Operation<T> type, String expression, int x1, int x2, int y1, int y2, int z1, int z2)  throws ExpressionException {
         ExpressionParser<T> parser = new ExpressionParser<>(type);
         Object[][][] result = new Object[x2 - x1 + 1][y2 - y1 + 1][z2 - z1 + 1];
