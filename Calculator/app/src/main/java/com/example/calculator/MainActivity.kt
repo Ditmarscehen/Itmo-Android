@@ -1,11 +1,13 @@
 package com.example.calculator
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.example.calculator.expression.generic.*
+import com.example.calculator.expression.generic.operations.IntOperation
+import com.example.calculator.expression.parser.ExpressionParser
 import kotlinx.android.synthetic.main.activity_main.*
 import net.objecthunter.exp4j.ExpressionBuilder
-import java.lang.Exception
 
 var operatorsCounter: Int = 0
 val operatorsChar: Set<Char> = setOf('+', '-', '/', '*')
@@ -40,19 +42,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun evaluate() {
-        val result: Double
+        val result: Int
         try {
             result = if (input.text.last().isDigit()) {
-                ExpressionBuilder(input.text.toString()).build().evaluate()
+                ExpressionParser(IntOperation()).parse(input.text.toString()).evaluate(0,0,0)
             } else {
-                ExpressionBuilder(
-                    input.text.toString().substring(0, input.text.length - 1)
-                ).build().evaluate()
+                ExpressionParser(IntOperation()).parse(input.text.toString().substring(0, input.text.length - 1)).evaluate(0,0,0)
             }
-            if (result.toLong().toDouble().equals(result))
-                output.text = result.toLong().toString()
-            else
-                output.text = result.toString()
+            output.text = result.toString()
             correct = true
         } catch (e: Exception) {
             output.text = e.message
