@@ -18,17 +18,6 @@ class OperationsClickTest {
         ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun checkConsecutiveOperations() {
-        Espresso.onView(ViewMatchers.withId(R.id.button1)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.buttonAdd)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.buttonSubtract)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.button2)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.input))
-            .check(ViewAssertions.matches(ViewMatchers.withText("1+2")))
-
-    }
-
-    @Test
     fun beginWithOperation() {
         Espresso.onView(ViewMatchers.withId(R.id.buttonAdd)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.buttonMultiply)).perform(ViewActions.click())
