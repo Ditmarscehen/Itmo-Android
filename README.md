@@ -1,13 +1,12 @@
 # Выполненные домашние задания курса Android в ИТМО
-### Calculator
+### [Calculator](https://github.com/Ditmarscehen/ItmoAndroid/tree/master/Calculator)
 Написать приложение калькулятор и покрыть его тестами.
-### Weather
+### [Weather](https://github.com/Ditmarscehen/ItmoAndroid/tree/master/Weather)
 Сверстать приложение погода.
-### Contacts
+### [Contacts](https://github.com/Ditmarscehen/ItmoAndroid/tree/master/Contacts)
 Написать приложение контакты, считывающее контакты с телефона и отображающее их количество в сплывающем окне.
-### Posts
-Fake API
-* https://jsonplaceholder.typicode.com/guide/
+### [Posts](https://github.com/Ditmarscehen/ItmoAndroid/tree/master/Posts)
+*[Fake API](https://jsonplaceholder.typicode.com/guide/)
 * Заимплементить методы: 
   * GET списка
   * POST записи
