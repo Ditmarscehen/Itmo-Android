@@ -6,7 +6,7 @@
 ### [Contacts](https://github.com/Ditmarscehen/ItmoAndroid/tree/master/Contacts)
 Написать приложение контакты, считывающее контакты с телефона и отображающее их количество в сплывающем окне.
 ### [Posts](https://github.com/Ditmarscehen/ItmoAndroid/tree/master/Posts)
-*[Fake API](https://jsonplaceholder.typicode.com/guide/)
+[Fake API](https://jsonplaceholder.typicode.com/guide/)
 * Заимплементить методы: 
   * GET списка
   * POST записи
